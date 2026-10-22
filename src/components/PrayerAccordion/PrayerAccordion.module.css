@@ -1,0 +1,81 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+  width: 360px;
+}
+
+.heading {
+  font: inherit;
+}
+
+.accordion {
+  width: 100%;
+  padding: 16px 24px 16px 16px;
+  border: none;
+  background-color: var(--surface);
+  border-radius: var(--radius-accordion);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.innerContent {
+  display: flex;
+  flex: 1;
+  gap: 12px;
+  align-items: center;
+}
+
+.image {
+  width: 64px;
+  height: 64px;
+  background-color: var(--surface-contrast);
+  border-radius: var(--radius-thumbnail);
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.caret {
+  flex-shrink: 0;
+  color: var(--icon-muted);
+  transition: transform 0.2s ease;
+}
+
+.caretCollapsed {
+  transform: rotate(180deg);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* display: flex above would otherwise override the hidden attribute */
+.content[hidden] {
+  display: none;
+}

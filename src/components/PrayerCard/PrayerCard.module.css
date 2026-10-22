@@ -1,0 +1,62 @@
+.prayerCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 16px 16px 20px;
+  background-color: var(--surface);
+  border-radius: var(--radius-card);
+}
+
+.topSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.prayerTitle {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.prayerDescription {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.bottomSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Clock icon uses currentColor, so it picks up this color too */
+.duration {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.time {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  font-weight: 400;
+}
+
+.prayButton {
+  color: var(--text-primary);
+  border: none;
+  background-color: var(--surface-contrast);
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.25px;
+  font-weight: 600;
+  cursor: pointer;
+}

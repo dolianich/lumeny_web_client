@@ -1,0 +1,18 @@
+:root {
+  /* Colors */
+  --bg: #ffffff;
+  --surface: #f2f2f2;
+  --surface-contrast: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #7a7a7a;
+  --icon-muted: #69788e;
+
+  /* Radii */
+  --radius-pill: 1000px;
+  --radius-accordion: 36px;
+  --radius-card: 32px;
+  --radius-thumbnail: 20px;
+
+  /* Typography */
+  --font-primary: "Inter", sans-serif;
+}
