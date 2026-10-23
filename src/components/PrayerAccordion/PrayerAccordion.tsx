@@ -6,7 +6,10 @@ import { CaretUpIcon } from "@phosphor-icons/react";
 const PRAYER_COUNT = 4;
 
 const PrayerAccordion = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // Each toggle adds another half turn so the caret always rotates the same
+  // direction, instead of swinging back and forth between 0deg and 180deg
+  const [toggleCount, setToggleCount] = useState(0);
+  const isOpen = toggleCount % 2 === 1;
   const contentId = useId();
 
   return (
@@ -22,7 +25,7 @@ const PrayerAccordion = () => {
           className={styles.accordion}
           aria-expanded={isOpen}
           aria-controls={contentId}
-          onClick={() => setIsOpen((open) => !open)}
+          onClick={() => setToggleCount((count) => count + 1)}
         >
           <span className={styles.innerContent}>
             <span className={styles.image}></span>
@@ -34,9 +37,8 @@ const PrayerAccordion = () => {
           <CaretUpIcon
             size={24}
             weight="regular"
-            className={
-              isOpen ? styles.caret : `${styles.caret} ${styles.caretCollapsed}`
-            }
+            className={styles.caret}
+            style={{ transform: `rotate(${180 + toggleCount * 180}deg)` }}
           />
         </button>
       </h2>

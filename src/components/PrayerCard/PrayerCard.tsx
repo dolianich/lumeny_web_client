@@ -12,8 +12,8 @@ const PrayerCard = () => {
       </div>
       <div className={styles.bottomSection}>
         <div className={styles.duration}>
-          <ClockIcon size={18} weight="regular" />
-          <p className={styles.time}>2 min</p>
+          <ClockIcon size={18} weight="regular" className={styles.clockIcon} />
+          <p className={styles.durationTime}>2 min</p>
         </div>
         <button type="button" className={styles.prayButton}>
           Pray

@@ -8,7 +8,9 @@
   --card-duration: 80ms;
   --collapse-delay: 60ms;
   --collapse-duration: 180ms;
-  --cards-total: calc(var(--card-duration) + (var(--count) - 1) * var(--stagger));
+  --cards-total: calc(
+    var(--card-duration) + (var(--count) - 1) * var(--stagger)
+  );
   /* Whole close: until the last card is gone and the panel has collapsed */
   --caret-duration: max(
     var(--cards-total),
@@ -36,7 +38,7 @@
   width: 100%;
   padding: 16px 24px 16px 16px;
   border: none;
-  background-color: var(--surface);
+  background-color: var(--card-surface-primary);
   border-radius: var(--radius-accordion);
   display: flex;
   gap: 8px;
@@ -65,7 +67,7 @@
 .image {
   width: 64px;
   height: 64px;
-  background-color: var(--surface-contrast);
+  background-color: var(--surface-thumbnail);
   border-radius: var(--radius-thumbnail);
 }
 
@@ -92,14 +94,10 @@
 
 .caret {
   flex-shrink: 0;
-  color: var(--icon-muted);
+  color: var(--icon-secondary);
   /* Ease-in curve whose negative y1 first pulls ~6deg (3.4% of 180deg) the
      opposite way, giving a small wind-up before the turn in either direction */
   transition: transform var(--caret-duration) cubic-bezier(0.1, -0.2, 0.75, 0);
-}
-
-.caretCollapsed {
-  transform: rotate(180deg);
 }
 
 /* Becomes hidden once the close animation has finished moving */
@@ -110,8 +108,7 @@
   transition:
     grid-template-rows var(--collapse-duration) cubic-bezier(0.4, 0, 0.2, 1)
       var(--collapse-delay),
-    visibility 0s linear
-      calc(var(--collapse-delay) + var(--collapse-duration));
+    visibility 0s linear calc(var(--collapse-delay) + var(--collapse-duration));
 }
 
 .contentOpen {
