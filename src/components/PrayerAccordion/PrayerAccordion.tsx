@@ -10,7 +10,12 @@ const PrayerAccordion = () => {
   const contentId = useId();
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={
+        isOpen ? `${styles.wrapper} ${styles.wrapperOpen}` : styles.wrapper
+      }
+      style={{ "--count": PRAYER_COUNT } as CSSProperties}
+    >
       <h2 className={styles.heading}>
         <button
           type="button"
@@ -42,7 +47,6 @@ const PrayerAccordion = () => {
         className={
           isOpen ? `${styles.content} ${styles.contentOpen}` : styles.content
         }
-        style={{ "--count": PRAYER_COUNT } as CSSProperties}
       >
         <div className={styles.clip}>
           <div className={styles.cards}>

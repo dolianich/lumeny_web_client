@@ -1,8 +1,31 @@
+/* Animation timings live on the wrapper so both the caret and the cards
+   can read them. Base values are for closing: cards lift away bottom-first
+   while the panel collapses right behind them. The stagger is short relative
+   to the card duration so the cards overlap heavily and read as one
+   continuous motion rather than separate steps */
 .wrapper {
+  --stagger: 35ms;
+  --card-duration: 80ms;
+  --collapse-delay: 60ms;
+  --collapse-duration: 180ms;
+  --cards-total: calc(var(--card-duration) + (var(--count) - 1) * var(--stagger));
+  /* Whole close: until the last card is gone and the panel has collapsed */
+  --caret-duration: max(
+    var(--cards-total),
+    calc(var(--collapse-delay) + var(--collapse-duration))
+  );
   display: flex;
   flex-direction: column;
   margin-bottom: 8px;
   width: 360px;
+}
+
+/* Opening: panel expands while cards fall in top-first */
+.wrapperOpen {
+  --stagger: 70ms;
+  --card-duration: 520ms;
+  /* Independent of the cards so the caret snaps open quickly */
+  --caret-duration: 250ms;
 }
 
 .heading {
@@ -63,22 +86,15 @@
   color: var(--icon-muted);
   /* Ease-in curve whose negative y1 first pulls ~6deg (3.4% of 180deg) the
      opposite way, giving a small wind-up before the turn in either direction */
-  transition: transform 0.3s cubic-bezier(0.6, -0.2, 0.75, 0);
+  transition: transform var(--caret-duration) cubic-bezier(0.1, -0.2, 0.75, 0);
 }
 
 .caretCollapsed {
   transform: rotate(180deg);
 }
 
-/* Closing: cards lift away bottom-first while the panel collapses right
-   behind them, then it becomes hidden once everything has finished moving.
-   The stagger is short relative to the card duration so the cards overlap
-   heavily and read as one continuous motion rather than separate steps */
+/* Becomes hidden once the close animation has finished moving */
 .content {
-  --stagger: 35ms;
-  --card-duration: 80ms;
-  --collapse-delay: 60ms;
-  --collapse-duration: 180ms;
   display: grid;
   grid-template-rows: 0fr;
   visibility: hidden;
@@ -89,10 +105,7 @@
       calc(var(--collapse-delay) + var(--collapse-duration));
 }
 
-/* Opening: panel expands while cards fall in top-first */
 .contentOpen {
-  --stagger: 70ms;
-  --card-duration: 520ms;
   grid-template-rows: 1fr;
   visibility: visible;
   transition:
@@ -135,6 +148,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .caret,
   .content,
   .contentOpen,
   .cardSlot,
