@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   margin-bottom: 8px;
   width: 360px;
 }
@@ -71,13 +70,76 @@
   transform: rotate(180deg);
 }
 
+/* Closing: cards lift away bottom-first while the panel collapses right
+   behind them, then it becomes hidden once everything has finished moving.
+   The stagger is short relative to the card duration so the cards overlap
+   heavily and read as one continuous motion rather than separate steps */
 .content {
+  --stagger: 35ms;
+  --card-duration: 80ms;
+  --collapse-delay: 60ms;
+  --collapse-duration: 180ms;
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows var(--collapse-duration) cubic-bezier(0.4, 0, 0.2, 1)
+      var(--collapse-delay),
+    visibility 0s linear
+      calc(var(--collapse-delay) + var(--collapse-duration));
+}
+
+/* Opening: panel expands while cards fall in top-first */
+.contentOpen {
+  --stagger: 70ms;
+  --card-duration: 520ms;
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows 480ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Spacing lives inside the clipped area (not as wrapper gap) so a
+   collapsed panel takes up no space at all */
+.cards {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-top: 8px;
 }
 
-/* display: flex above would otherwise override the hidden attribute */
-.content[hidden] {
-  display: none;
+.cardSlot {
+  opacity: 0;
+  transform: translateY(-24px) scale(0.96);
+  transform-origin: top center;
+  transition:
+    opacity var(--card-duration) cubic-bezier(0.4, 0, 0.6, 1),
+    transform var(--card-duration) cubic-bezier(0.4, 0, 0.6, 1);
+  transition-delay: calc((var(--count) - 1 - var(--index)) * var(--stagger));
+}
+
+.contentOpen .cardSlot {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity calc(var(--card-duration) * 0.4) cubic-bezier(0, 0, 0.2, 1),
+    /* easeOutBack: slight overshoot gives the "landing" feel of a fall */
+    transform var(--card-duration) cubic-bezier(0.34, 1.36, 0.64, 1);
+  transition-delay: calc(var(--index) * var(--stagger));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content,
+  .contentOpen,
+  .cardSlot,
+  .contentOpen .cardSlot {
+    transition-duration: 0s;
+    transition-delay: 0s;
+  }
 }

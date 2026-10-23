@@ -1,7 +1,9 @@
-import { useId, useState } from "react";
+import { useId, useState, type CSSProperties } from "react";
 import styles from "./PrayerAccordion.module.css";
 import PrayerCard from "../PrayerCard/PrayerCard";
 import { CaretUpIcon } from "@phosphor-icons/react";
+
+const PRAYER_COUNT = 4;
 
 const PrayerAccordion = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +23,7 @@ const PrayerAccordion = () => {
             <span className={styles.image}></span>
             <span className={styles.textContent}>
               <span className={styles.title}>For everyday</span>
-              <span className={styles.subtitle}>4 prayers</span>
+              <span className={styles.subtitle}>{PRAYER_COUNT} prayers</span>
             </span>
           </span>
           <CaretUpIcon
@@ -33,11 +35,28 @@ const PrayerAccordion = () => {
           />
         </button>
       </h2>
-      <div id={contentId} className={styles.content} hidden={!isOpen}>
-        <PrayerCard />
-        <PrayerCard />
-        <PrayerCard />
-        <PrayerCard />
+      {/* Kept mounted so the close animation can play; visibility: hidden
+          (applied after the animation) removes it from focus and a11y tree */}
+      <div
+        id={contentId}
+        className={
+          isOpen ? `${styles.content} ${styles.contentOpen}` : styles.content
+        }
+        style={{ "--count": PRAYER_COUNT } as CSSProperties}
+      >
+        <div className={styles.clip}>
+          <div className={styles.cards}>
+            {Array.from({ length: PRAYER_COUNT }, (_, index) => (
+              <div
+                key={index}
+                className={styles.cardSlot}
+                style={{ "--index": index } as CSSProperties}
+              >
+                <PrayerCard />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
