@@ -62,7 +62,9 @@
 .caret {
   flex-shrink: 0;
   color: var(--icon-muted);
-  transition: transform 0.2s ease;
+  /* Ease-in curve whose negative y1 first pulls ~6deg (3.4% of 180deg) the
+     opposite way, giving a small wind-up before the turn in either direction */
+  transition: transform 0.3s cubic-bezier(0.6, -0.2, 0.75, 0);
 }
 
 .caretCollapsed {

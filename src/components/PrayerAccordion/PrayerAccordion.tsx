@@ -4,7 +4,7 @@ import PrayerCard from "../PrayerCard/PrayerCard";
 import { CaretUpIcon } from "@phosphor-icons/react";
 
 const PrayerAccordion = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const contentId = useId();
 
   return (
