@@ -44,6 +44,15 @@
   font-family: inherit;
   text-align: left;
   cursor: pointer;
+  /* Release: spring back with a slight overshoot (~1.015) before settling.
+     y1 > 1 is what pushes the curve past its end value */
+  transition: transform 150ms cubic-bezier(0.3, 2.4, 0.5, 1);
+}
+
+/* Press and hold: shrink quickly and stay small until released */
+.accordion:active {
+  transform: scale(0.98);
+  transition: transform 100ms cubic-bezier(0.2, 0, 0.4, 1);
 }
 
 .innerContent {
@@ -148,6 +157,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .accordion,
+  .accordion:active,
   .caret,
   .content,
   .contentOpen,
