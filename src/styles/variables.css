@@ -3,11 +3,9 @@
   --bg: #f5f5f7;
   --card-surface-primary: #ffffff;
   --surface-thumbnail: #f5f5f7;
-  --surface-action-grey: #EBEBF0;
-  --text-primary: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --icon-primary: #1d1d1f;
-  --icon-secondary: #6e6e73;
+  --surface-action-grey: #ebebf0;
+  --content-primary: #1d1d1f;
+  --content-secondary: #6e6e73;
 
   /* Radii */
   --radius-pill: 1000px;

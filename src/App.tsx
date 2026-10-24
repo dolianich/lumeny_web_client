@@ -2,10 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import Bible from "./pages/Bible";
 import ErrorPage from "./pages/ErrorPage";
-import Foundations from "./pages/Foundations";
-import HomePage from "./pages/HomePage";
+import Home from "./pages/Home";
+import WebsitePage from "./pages/WebsitePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Prayers from "./pages/Prayers";
+import Settings from "./pages/Settings";
 
 const router = createBrowserRouter([
   {
@@ -13,10 +14,11 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <HomePage /> },
-      { path: "foundations", element: <Foundations /> },
+      { index: true, element: <WebsitePage /> },
+      { path: "home", element: <Home /> },
       { path: "bible", element: <Bible /> },
       { path: "prayers", element: <Prayers /> },
+      { path: "settings", element: <Settings /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

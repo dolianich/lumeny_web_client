@@ -1,0 +1,9 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  padding: 4px;
+  background-color: var(--card-surface-primary);
+  width: 300px;
+  border-radius: 24px;
+}

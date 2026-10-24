@@ -81,7 +81,7 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--content-primary);
 }
 
 .subtitle {
@@ -89,12 +89,12 @@
   line-height: 24px;
   letter-spacing: 0.25px;
   font-weight: 400;
-  color: var(--text-secondary);
+  color: var(--content-secondary);
 }
 
 .caret {
   flex-shrink: 0;
-  color: var(--icon-secondary);
+  color: var(--content-secondary);
   /* Ease-in curve whose negative y1 first pulls ~6deg (3.4% of 180deg) the
      opposite way, giving a small wind-up before the turn in either direction */
   transition: transform var(--caret-duration) cubic-bezier(0.1, -0.2, 0.75, 0);

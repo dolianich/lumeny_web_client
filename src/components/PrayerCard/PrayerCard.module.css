@@ -18,7 +18,7 @@
   line-height: 24px;
   letter-spacing: 0px;
   font-weight: 500;
-  color: var(--text-primary);
+  color: var(--content-primary);
 }
 
 .prayerDescription,
@@ -27,7 +27,7 @@
   line-height: 24px;
   letter-spacing: 0.25px;
   font-weight: 400;
-  color: var(--text-secondary);
+  color: var(--content-secondary);
 }
 
 .bottomSection {
@@ -37,7 +37,7 @@
 }
 
 .clockIcon {
-  color: var(--icon-secondary);
+  color: var(--content-secondary);
 }
 
 .duration {
@@ -48,7 +48,7 @@
 }
 
 .prayButton {
-  color: var(--text-primary);
+  color: var(--content-primary);
   border: none;
   background-color: var(--surface-action-grey);
   padding: 8px 20px;

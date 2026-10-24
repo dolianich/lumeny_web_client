@@ -1,0 +1,29 @@
+.navButton {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  cursor: pointer;
+  border-radius: 20px;
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+.navButton span {
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.25px;
+  font-weight: 500;
+}
+
+.default {
+  background-color: transparent;
+  color: var(--content-secondary);
+}
+
+.selected {
+  background-color: var(--bg);
+  color: var(--content-primary);
+}
