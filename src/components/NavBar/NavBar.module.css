@@ -1,9 +1,43 @@
 .navigation {
+  --padding: 4px;
+  --gap: 4px;
+  position: relative;
   display: flex;
   flex-direction: row;
-  gap: 4px;
-  padding: 4px;
+  gap: var(--gap);
+  padding: var(--padding);
   background-color: var(--card-surface-primary);
   width: 300px;
   border-radius: 24px;
+}
+
+/* Buttons are equal width (flex: 1), so the indicator is one button wide and
+   moves by whole button widths; translateX's 100% is its own width */
+.indicator {
+  position: absolute;
+  top: var(--padding);
+  bottom: var(--padding);
+  left: var(--padding);
+  width: calc(
+    (100% - 2 * var(--padding) - (var(--count) - 1) * var(--gap)) / var(--count)
+  );
+  background-color: var(--bg);
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateX(calc(var(--active-index) * (100% + var(--gap))));
+  /* Slight overshoot so it settles onto the new button */
+  transition:
+    transform 300ms cubic-bezier(0.34, 1.25, 0.64, 1),
+    opacity 200ms ease;
+}
+
+/* Hidden on routes that have no nav button (e.g. the landing page) */
+.indicatorVisible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: none;
+  }
 }

@@ -20,7 +20,11 @@ const NavButton = ({ link, icon: Icon, label }: Props) => {
     >
       {({ isActive }) => (
         <>
-          <Icon size={24} weight={isActive ? "fill" : "regular"} />
+          <Icon
+            size={24}
+            weight={isActive ? "fill" : "regular"}
+            className={isActive ? styles.iconSelected : undefined}
+          />
           <span>{label}</span>
         </>
       )}
